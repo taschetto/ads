@@ -1,0 +1,81 @@
+!PARAMETERS
+
+arrivals:
+    TRO: 10.0
+    INF: 5.0
+    CAI: 3.0
+
+queues:
+    TRO:
+        servers: 1
+        capacity: 5
+        minArrival: 1.0
+        maxArrival: 2.0
+        minService: 1.0
+        maxService: 2.0
+    EMB:
+        servers: 1
+        capacity: 5
+        minArrival: 1.0
+        maxArrival: 2.0
+        minService: 1.0
+        maxService: 2.0
+    INF:
+        servers: 1
+        capacity: 5
+        minArrival: 1.0
+        maxArrival: 2.0
+        minService: 1.0
+        maxService: 2.0
+    TES:
+        servers: 1
+        capacity: 5
+        minArrival: 1.0
+        maxArrival: 2.0
+        minService: 1.0
+        maxService: 2.0
+    CAI:
+        servers: 5
+        capacity: 5
+        minArrival: 1.0
+        maxArrival: 2.0
+        minService: 1.0
+        maxService: 2.0
+    VAL:
+        servers: 1
+        capacity: 5
+        minArrival: 1.0
+        maxArrival: 2.0
+        minService: 1.0
+        maxService: 2.0
+
+network:
+-   source: TES
+    target: CAI
+    probability: 0.5
+-   source: CAI
+    target: EMB
+    probability: 0.8
+-   source: EMB
+    target: TES
+    probability: 0.1
+-   source: CAI
+    target: VAL
+    probability: 0.6
+-   source: VAL
+    target: TES
+    probability: 0.1
+-   source: INF
+    target: TES
+    probability: 0.6
+-   source: INF
+    target: CAI
+    probability: 0.7
+
+rndnumbersPerSeed: 100000
+seeds:
+- 1092381
+- 1238
+- 128308
+- 9901823
+- 71247
