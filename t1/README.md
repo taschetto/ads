@@ -5,18 +5,18 @@ https://github.com/taschetto/ads/blob/master/t1/drawing.svg
 ## Queues info:
 
 Queue | Type | Min arrival | Max arrival | Min service | Max service
----|-------|-----|-----|-----|-----
-CAI|G/G/C/K|1 min|2 min|3 min|4 min
-INF|G/G/C/K|1 min|2 min|3 min|4 min
-TES|G/G/C/K|1 min|2 min|3 min|4 min
-VAL|G/G/C/K|1 min|2 min|3 min|4 min
-EMB|G/G/C/K|1 min|2 min|3 min|4 min
-TRO|G/G/C/K|1 min|2 min|3 min|4 min
+---|--------|-----|-----|-----|-----
+CAI|G/G/6/50|1 min|2 min|3 min|4 min
+INF|G/G/1/10|1 min|2 min|3 min|4 min
+TES|G/G/2/15|1 min|2 min|3 min|4 min
+VAL|G/G/3/25|N/A|N/A|3 min|4 min
+EMB|G/G/3/30|N/A|N/A|3 min|4 min
+TRO|G/G/2/20|1 min|2 min|3 min|4 min
 
-## Probablities
+## Probabilities
 
-Source | Destination | Probability
--------|-------------|--------------
+Src | Dst | Probability
+:-----:|:-----------:|-----------:
 CAI|INF|.1
 CAI|TES|.1
 CAI|VAL|.5
