@@ -9,7 +9,7 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   sodipodi:docname="New document 2"
+   sodipodi:docname="drawing.svg"
    inkscape:version="0.48.4 r9939"
    version="1.1"
    id="svg2985"
@@ -22,10 +22,10 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.61399264"
-     inkscape:cx="816.0901"
-     inkscape:cy="363.34084"
-     inkscape:current-layer="svg2985"
+     inkscape:zoom="2.4559706"
+     inkscape:cx="251.92076"
+     inkscape:cy="127.5328"
+     inkscape:current-layer="layer1"
      id="namedview2989"
      showgrid="true"
      showguides="true"
@@ -254,7 +254,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -590,7 +590,7 @@
        style="fill:none;stroke:#008000;stroke-width:1.00000024px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow2Lendo)" />
     <path
        style="fill:none;stroke:#ff0000;stroke-width:1.00000024px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow2LendoO)"
-       d="m 198.31243,682.98195 34.90952,34.9095"
+       d="m 206.86302,675.65287 34.90952,34.9095"
        id="path9426"
        inkscape:connector-curvature="0" />
     <path
@@ -709,5 +709,15 @@
            inkscape:connector-curvature="0" />
       </g>
     </g>
+    <path
+       inkscape:connector-curvature="0"
+       id="path3285"
+       d="m 205.23434,594.62584 34.90952,34.9095"
+       style="fill:none;stroke:#ff0000;stroke-width:1.00000024px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow2LendoO)" />
+    <path
+       style="fill:none;stroke:#ff0000;stroke-width:1.00000024px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow2LendoO)"
+       d="m 207.27019,510.34144 34.90952,34.9095"
+       id="path3287"
+       inkscape:connector-curvature="0" />
   </g>
 </svg>
