@@ -54,33 +54,33 @@ network:
     # Source: CAI
 -   source: CAI
     target: INF
-    probability: 0.3
+    probability: 0.1
 -   source: CAI
     target: VAL
-    probability: 0.6
--   source: CAI
-    target: EMB
     probability: 0.4
 -   source: CAI
+    target: EMB
+    probability: 0.3
+-   source: CAI
     target: TRO
-    probability: 0.1
+    probability: 0.05
 -   source: CAI
     target: TES
-    probability: 0.1
+    probability: 0.05
     # Source: INF
 -   source: INF
     target: CAI
-    probability: 0.7
+    probability: 0.5
 -   source: INF
     target: TES
-    probability: 0.5
+    probability: 0.3
     # Source: TES
 -   source: TES
     target: CAI
-    probability: 0.8
+    probability: 0.7
 -   source: TES
     target: INF
-    probability: 0.4
+    probability: 0.2
     # Source: VAL
 -   source: VAL
     target: CAI
