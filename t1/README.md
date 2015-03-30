@@ -11,7 +11,7 @@ INF|G/G/1/10|4 min|7 min|5 min|12 min
 TES|G/G/2/15|8 min|12 min|10 min|35 min
 VAL|G/G/3/25|N/A|N/A|2 min|4 min
 EMB|G/G/3/30|N/A|N/A|4 min|9 min
-TRO|G/G/2/20|10 min|15 min|8 min|14 min
+TRO|G/G/2/20|10 min|15 min|9 min|14 min
 
 ## Probabilities
 
