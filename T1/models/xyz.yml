@@ -19,36 +19,36 @@ queues:
         capacity: 5
         minArrival: 3.0
         maxArrival: 4.0
-        minService: 2.0
-        maxService: 3.0
+        minService: 4.0
+        maxService: 9.0
     INF:
         servers: 3
         capacity: 10
         minArrival: 8.0
         maxArrival: 12.0
-        minService: 1.0
-        maxService: 5.0
+        minService: 3.0
+        maxService: 12.0
     TES:
         servers: 5
         capacity: 20
         minArrival: 5.0
         maxArrival: 6.0
         minService: 5.0
-        maxService: 6.0
+        maxService: 35.0
     CAI:
         servers: 5
         capacity: 10
         minArrival: 3.0
         maxArrival: 4.0
-        minService: 3.0
-        maxService: 4.0
+        minService: 1.0
+        maxService: 15.0
     VAL:
         servers: 2
         capacity: 5
         minArrival: 4.0
         maxArrival: 5.0
-        minService: 1.0
-        maxService: 2.0
+        minService: 2.0
+        maxService: 5.0
 
 network:
     # Source: CAI
@@ -60,7 +60,7 @@ network:
     probability: 0.4
 -   source: CAI
     target: EMB
-    probability: 0.3
+    probability: 0.15
 -   source: CAI
     target: TRO
     probability: 0.05
@@ -70,10 +70,10 @@ network:
     # Source: INF
 -   source: INF
     target: CAI
-    probability: 0.5
+    probability: 0.6
 -   source: INF
     target: TES
-    probability: 0.3
+    probability: 0.15
     # Source: TES
 -   source: TES
     target: CAI
@@ -103,7 +103,7 @@ network:
     probability: 0.1
 -   source: EMB
     target: VAL
-    probability: 0.3
+    probability: 0.45
     # Source: TRO
 -   source: TRO
     target: CAI
