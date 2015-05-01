@@ -1,18 +1,18 @@
 #!/bin/sh
 
+timestamp=$(date +"%s")
 simulator="./bin/simulator.jar"
 simulations_path="./simulations/"
-model="./models/xyz.yml"
+model_path="$1"
+model_name=$(basename $1)
+model_name=${model_name%.*}
+output="${simulations_path}${model_name}_${timestamp}.txt"
 
-timestamp() {
-    echo $(date +"%s")
-}
 
 simulate() {
-    simulation=$(timestamp)
-    echo "Simulating model: $model"
-    echo "          Output: ${simulations_path}${simulation}.txt."
-    java -jar $simulator run $model >> ${simulations_path}${simulation}.txt
+    echo "Simulating model: $model_path"
+    echo "          Output: ${output}"
+    java -jar $simulator run $model_path >> ${output}
 }
 
 simulate
