@@ -42,29 +42,6 @@ class QueueData
   def response_time
     (self.population / self.throughput).round(PRECISION)
   end
-
-  def to_s
-    str = "*********************************************************\n" +
-          "Queue:   #{@name} (G/G/#{@servers}/#{@clients})          \n" +
-          "Arrival: #{@min_arrival} ... #{@max_arrival}             \n" +
-          "Service: #{@min_service} ... #{@max_service}             \n" +
-          "*********************************************************\n" +
-          "   State               Time               Probability    \n"
-    @states.each do |k, v|
-      str = str +
-            "#{k}".rjust(7) +
-            "#{v[:time]}".rjust(21) +
-            "#{v[:probability]}%".rjust(22) + "\n"
-    end
-
-    str = str +
-          "                                                         \n" +
-          "      Population: #{self.population}                     \n" +
-          "      Throughput: #{self.throughput}                     \n" +
-          "           Usage: #{self.usage}                          \n" +
-          "   Response Time: #{self.response_time}                  \n" +
-          "Number of losses: #{@losses}                             \n\n"
-  end
 end
 
 temp_file = Tempfile.new('temp_file')
@@ -91,9 +68,9 @@ begin
       elsif data = line.match(/Number of losses:\s*(\d+)/)
         queue.losses = data[1].to_i
         temp_file.puts "      Population: #{queue.population}\n" +
-          "      Throughput: #{queue.throughput}\n" +
-          "           Usage: #{queue.usage}\n" +
-          "   Response Time: #{queue.response_time}\n"
+                       "      Throughput: #{queue.throughput}\n" +
+                       "           Usage: #{queue.usage}\n" +
+                       "   Response Time: #{queue.response_time}\n"
       end
     end
   end
