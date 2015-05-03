@@ -42,6 +42,10 @@ Service: 1.5 ... 4.0
       5               4.5060                 0.00%
 
 Number of losses: 0
+      Population: 0.5203
+      Throughput: 0.5088
+           Usage: 0.2544
+   Response Time: 1.0226
 
 *********************************************************
 Queue:   TRO (G/G/1/5)
@@ -57,6 +61,10 @@ Service: 4.0 ... 7.0
       5             411.6910                 0.36%
 
 Number of losses: 33
+      Population: 1.1537
+      Throughput: 0.751
+           Usage: 0.751
+   Response Time: 1.53622
 
 *********************************************************
 Queue:   CAI (G/G/6/15)
@@ -82,6 +90,10 @@ Service: 1.0 ... 12.0
      15            5667.0639                 4.93%
 
 Number of losses: 3702
+      Population: 10.0089
+      Throughput: 5.8693
+           Usage: 0.97822
+   Response Time: 1.7053
 
 *********************************************************
 Queue:   INF (G/G/3/10)
@@ -102,6 +114,10 @@ Service: 3.0 ... 12.0
      10            1226.0685                 1.07%
 
 Number of losses: 325
+      Population: 3.9228
+      Throughput: 2.5816
+           Usage: 0.86053
+   Response Time: 1.51952
 
 *********************************************************
 Queue:   EMB (G/G/2/5)
@@ -117,6 +133,10 @@ Service: 4.0 ... 15.0
       5           80235.7148                69.86%
 
 Number of losses: 48541
+      Population: 4.6481
+      Throughput: 1.9981
+           Usage: 0.99905
+   Response Time: 2.32626
 
 *********************************************************
 Queue:   TES (G/G/5/20)
@@ -147,6 +167,10 @@ Service: 5.0 ... 20.0
      20            6497.7426                 5.66%
 
 Number of losses: 1828
+      Population: 14.5792
+      Throughput: 4.9727
+           Usage: 0.99454
+   Response Time: 2.93185
 
 =========================================================
 Simulation average time: 19141.7794
