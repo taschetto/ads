@@ -1,3 +1,6 @@
+require 'tempfile'
+require 'fileutils'
+
 class QueueData
   PRECISION = 5
 
@@ -64,29 +67,39 @@ class QueueData
   end
 end
 
+temp_file = Tempfile.new('temp_file')
+
 simulation_file = ARGV[0]
 queues = []
 
-File.open(simulation_file) do |f|
-  queue = nil
-  f.each_line do |line|
-    if data = line.match(/Queue:\s*(\w+)\s*\(G\/G\/(\d+)\/(\d+)\)/)
-      queue = QueueData.new data[1], data[2].to_i, data[3].to_i
-      queues << queue
-    elsif data = line.match(/Arrival:\s*(\d+\.\d+)\s*\.{3}\s*(\d+\.\d+)/)
-      queue.min_arrival = data[1].to_i
-      queue.max_arrival = data[2].to_i
-    elsif data = line.match(/Service:\s*(\d+\.\d+)\s*\.{3}\s*(\d+\.\d+)/)
-      queue.min_service = data[1].to_i
-      queue.max_service = data[2].to_i
-    elsif data = line.match(/\s*(\d+)\s*(\d+\.\d+)\s*(\d+\.\d+)\%/)
-      queue.states[data[1].to_s] = { time: data[2].to_f, probability: data[3].to_f }
-    elsif data = line.match(/Number of losses:\s*(\d+)/)
-      queue.losses = data[1].to_i
+begin
+  File.open(simulation_file) do |f|
+    queue = nil
+    f.each_line do |line|
+      temp_file.puts line
+      if data = line.match(/Queue:\s*(\w+)\s*\(G\/G\/(\d+)\/(\d+)\)/)
+        queue = QueueData.new data[1], data[2].to_i, data[3].to_i
+        queues << queue
+      elsif data = line.match(/Arrival:\s*(\d+\.\d+)\s*\.{3}\s*(\d+\.\d+)/)
+        queue.min_arrival = data[1].to_i
+        queue.max_arrival = data[2].to_i
+      elsif data = line.match(/Service:\s*(\d+\.\d+)\s*\.{3}\s*(\d+\.\d+)/)
+        queue.min_service = data[1].to_i
+        queue.max_service = data[2].to_i
+      elsif data = line.match(/\s*(\d+)\s*(\d+\.\d+)\s*(\d+\.\d+)\%/)
+        queue.states[data[1].to_s] = { time: data[2].to_f, probability: data[3].to_f }
+      elsif data = line.match(/Number of losses:\s*(\d+)/)
+        queue.losses = data[1].to_i
+        temp_file.puts "      Population: #{queue.population}\n" +
+          "      Throughput: #{queue.throughput}\n" +
+          "           Usage: #{queue.usage}\n" +
+          "   Response Time: #{queue.response_time}\n"
+      end
     end
   end
-end
-
-queues.each do |q|
-  puts q
+  temp_file.close
+  FileUtils.mv(temp_file.path, simulation_file)
+ensure
+  temp_file.close
+  temp_file.unlink
 end
