@@ -43,9 +43,11 @@ Service: 1.5 ... 4.0
 
 Number of losses: 91
       Population: 1.0967
-      Throughput: 0.979
+  Throughput min: 0.979
+  Throughput max: 3.916
            Usage: 0.4895
-   Response Time: 1.12022
+ Response T. min: 1.12022
+ Response T. max: 0.28006
 
 *********************************************************
 Queue:   TRO (G/G/1/5)
@@ -62,9 +64,11 @@ Service: 4.0 ... 7.0
 
 Number of losses: 7
       Population: 0.849
-      Throughput: 0.644
+  Throughput min: 2.576
+  Throughput max: 4.508
            Usage: 0.644
-   Response Time: 1.31832
+ Response T. min: 0.32958
+ Response T. max: 0.18833
 
 *********************************************************
 Queue:   CAI (G/G/6/15)
@@ -91,9 +95,11 @@ Service: 1.0 ... 12.0
 
 Number of losses: 34
       Population: 5.6083
-      Throughput: 4.9396
+  Throughput min: 4.9396
+  Throughput max: 59.2752
            Usage: 0.82327
-   Response Time: 1.13538
+ Response T. min: 1.13538
+ Response T. max: 0.09461
 
 *********************************************************
 Queue:   INF (G/G/3/10)
@@ -115,9 +121,11 @@ Service: 3.0 ... 12.0
 
 Number of losses: 38
       Population: 2.7945
-      Throughput: 2.2541
+  Throughput min: 6.7623
+  Throughput max: 27.0492
            Usage: 0.75137
-   Response Time: 1.23974
+ Response T. min: 0.41325
+ Response T. max: 0.10331
 
 *********************************************************
 Queue:   EMB (G/G/2/5)
@@ -134,9 +142,11 @@ Service: 4.0 ... 9.0
 
 Number of losses: 14
       Population: 0.7859
-      Throughput: 0.7347
+  Throughput min: 2.9388
+  Throughput max: 6.6123
            Usage: 0.36735
-   Response Time: 1.06969
+ Response T. min: 0.26742
+ Response T. max: 0.11885
 
 *********************************************************
 Queue:   TES (G/G/5/20)
@@ -168,9 +178,11 @@ Service: 5.0 ... 20.0
 
 Number of losses: 0
       Population: 4.9939
-      Throughput: 4.2035
+  Throughput min: 21.0175
+  Throughput max: 84.07
            Usage: 0.8407
-   Response Time: 1.18803
+ Response T. min: 0.23761
+ Response T. max: 0.0594
 
 =========================================================
 Simulation average time: 21677.5238

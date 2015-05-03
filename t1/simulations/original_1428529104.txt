@@ -43,9 +43,11 @@ Service: 2.0 ... 5.0
 
 Number of losses: 68
       Population: 1.1093
-      Throughput: 0.9953
+  Throughput min: 1.9906
+  Throughput max: 4.9765
            Usage: 0.49765
-   Response Time: 1.11454
+ Response T. min: 0.55727
+ Response T. max: 0.22291
 
 *********************************************************
 Queue:   TRO (G/G/2/5)
@@ -61,9 +63,11 @@ Service: 4.0 ... 7.0
 
 Number of losses: 0
       Population: 0.6096
-      Throughput: 0.6041
+  Throughput min: 2.4164
+  Throughput max: 4.2287
            Usage: 0.30205
-   Response Time: 1.0091
+ Response T. min: 0.25228
+ Response T. max: 0.14416
 
 *********************************************************
 Queue:   CAI (G/G/5/10)
@@ -85,9 +89,11 @@ Service: 1.0 ... 15.0
 
 Number of losses: 8846
       Population: 7.1952
-      Throughput: 4.8476
+  Throughput min: 4.8476
+  Throughput max: 72.714
            Usage: 0.96952
-   Response Time: 1.48428
+ Response T. min: 1.48428
+ Response T. max: 0.09895
 
 *********************************************************
 Queue:   INF (G/G/3/10)
@@ -109,9 +115,11 @@ Service: 3.0 ... 12.0
 
 Number of losses: 1
       Population: 2.1644
-      Throughput: 1.9374
+  Throughput min: 5.8122
+  Throughput max: 23.2488
            Usage: 0.6458
-   Response Time: 1.11717
+ Response T. min: 0.37239
+ Response T. max: 0.0931
 
 *********************************************************
 Queue:   EMB (G/G/2/5)
@@ -128,9 +136,11 @@ Service: 4.0 ... 9.0
 
 Number of losses: 0
       Population: 0.6205
-      Throughput: 0.5969
+  Throughput min: 2.3876
+  Throughput max: 5.3721
            Usage: 0.29845
-   Response Time: 1.03954
+ Response T. min: 0.25988
+ Response T. max: 0.1155
 
 *********************************************************
 Queue:   TES (G/G/5/20)
@@ -162,9 +172,11 @@ Service: 5.0 ... 35.0
 
 Number of losses: 9393
       Population: 18.3285
-      Throughput: 4.9963
+  Throughput min: 24.9815
+  Throughput max: 174.8705
            Usage: 0.99926
-   Response Time: 3.66841
+ Response T. min: 0.73368
+ Response T. max: 0.10481
 
 =========================================================
 Simulation average time: 25972.7107
