@@ -23,10 +23,18 @@ class QueueData
     result.round(PRECISION)
   end
 
-  def throughput
+  def throughput_min
     result = 0
     @states.each do |k, v|
-      result += v[:probability] / 100 * [k.to_i, @servers].min
+      result += v[:probability] / 100 * [k.to_i, @servers].min * @min_service
+    end
+    result.round(PRECISION)
+  end
+
+  def throughput_max
+    result = 0
+    @states.each do |k, v|
+      result += v[:probability] / 100 * [k.to_i, @servers].min * @max_service
     end
     result.round(PRECISION)
   end
@@ -39,8 +47,12 @@ class QueueData
     result.round(PRECISION)
   end
 
-  def response_time
-    (self.population / self.throughput).round(PRECISION)
+  def response_time_min
+    (self.population / self.throughput_min).round(PRECISION)
+  end
+
+  def response_time_max
+    (self.population / self.throughput_max).round(PRECISION)
   end
 end
 
@@ -68,9 +80,11 @@ begin
       elsif data = line.match(/Number of losses:\s*(\d+)/)
         queue.losses = data[1].to_i
         temp_file.puts "      Population: #{queue.population}\n" +
-                       "      Throughput: #{queue.throughput}\n" +
+                       "  Throughput min: #{queue.throughput_min}\n" +
+                       "  Throughput max: #{queue.throughput_max}\n" +
                        "           Usage: #{queue.usage}\n" +
-                       "   Response Time: #{queue.response_time}\n"
+                       " Response T. min: #{queue.response_time_min}\n" +
+                       " Response T. max: #{queue.response_time_max}\n"
       end
     end
   end
