@@ -13,6 +13,7 @@ simulate() {
     echo "Simulating model: $model_path"
     echo "          Output: ${output}"
     java -jar $simulator run $model_path >> ${output}
+    ruby parser.rb ${output}
 }
 
 simulate
