@@ -183,9 +183,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="5.6"
-     inkscape:cx="251.50846"
-     inkscape:cy="486.01896"
+     inkscape:zoom="11.2"
+     inkscape:cx="109.88977"
+     inkscape:cy="495.206"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -239,7 +239,7 @@
          style="font-size:14px">Dev</tspan></text>
     <path
        style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow2Lend)"
-       d="m 146.77343,148.16683 c -4.7946,1.20734 -35.09517,28.98376 -54.098164,11.27168 -20.652363,-19.24941 -6.971742,-47.66074 23.214294,-37.32143 27.83633,9.53448 31.60714,11.78571 31.60714,11.78571"
+       d="m 146.48932,147.91429 c -4.7946,1.20734 -42.23803,27.4659 -54.098159,11.27168 -16.681226,-22.77711 -1.108656,-38.14398 23.214289,-37.32143 3.52097,0.11907 11.33266,0.95808 31.25,12.67857"
        id="path4229"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cssc" />
