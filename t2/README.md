@@ -15,9 +15,9 @@ modelos SAN.
 
 ## Feature
 
-Uma feature é um pedaço do software que está sendo desenvolvido, é de uma
-feature que surgirá uma possível nova versão de produção. Porém, uma
-feature só pode ser uma candidata à versão de produção se passar em todos
+Uma `feature` é um pedaço do software que está sendo desenvolvido. À partir de uma `feature`
+que surgirá uma possível nova versão de produção. Porém, uma
+`feature` só pode ser uma candidata à versão de produção se passar em todos
 os testes de desenvolvimento (que podem ser testes automatizados, por exemplo).
 
 Inicialmente, toda a feature está em estado Alpha, que significa que a mesma
