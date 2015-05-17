@@ -1,0 +1,213 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ADS - T2</title>
+<link rel="stylesheet" href="https://stackedit.io/res-min/themes/base.css" />
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+</head>
+<body><div class="container"><p>Pontifícia Universidade Católica do Rio Grande do Sul <br>
+Faculdade de Informática <br>
+Curso de Ciência da Computação <br>
+Discilina de Análise de Desempenho de Sistemas</p>
+
+<p><strong>Guilherme Taschetto e William Martins</strong> <br>
+Porto Alegre, 18 de maio de 2015</p>
+
+<h3 id="san-stochastic-automata-network">SAN - Stochastic Automata Network</h3>
+
+<p>Um dos grandes desafios do desenvolvimento de software é a gerência do workflow do processo de desenvolvimento. O uso de técnicas como sistemas de versionamento, servidores de integração contínua, equipes ágeis, entre outras, buscam garantir a qualidade do software entregue às partes interessadas.</p>
+
+<p>Porém, com o advento das equipes distribuídas trabalhando em um mesmo projeto, ocorre um aumento da complexidade na gerência e controle do processo. Para validar o processo e estimar o impacto que o mesmo terá no andamento do projeto. é possível representar os componentes através de modelos SAN.</p>
+
+<h3 id="modelagem-san">Modelagem SAN</h3>
+
+<h4 id="developer">Developer</h4>
+
+<p>Durante o desenvolvimento (<code>Dev</code>) de uma feature, o desenvolvedor realiza diversos <code>commit</code>’s. Após, é feito o <code>pull request</code>. Esta ação irá disparar a execução de testes automatizados em um servidor de integração contínua (<code>CI running</code>). O servidor, por sua vez, poderá retornar falha (<code>CI fails</code>), levando aquele código ao estado de falha (<code>Failed</code>), obrigando o desenvolvedor à realizar novos <code>commit</code>’s corretivos; ou então pode retornar sucesso (<code>CI passes</code>), indicando que aquele <code>pull request</code> está pronto (<code>Ready</code>) para ser mesclado com o código de produção. Neste momento, o desenvolvedor ainda tem o poder de rejeitar (<code>reject</code>) o <code>pull request</code>, levando ao estado de rejeitado (<code>Rejected</code>) e tendo que realizar novos <code>commit</code>’s para prosseguir; ou de enviá-lo para produção (<code>merge</code>). Quando aquele código já foi mesclado à produção (<code>Merged</code>), o desenvolvedor pode realizar novos <code>commit</code>’s, o que iniciará um novo ciclo de desenvolvimento (<code>Dev</code>).</p>
+
+<table>
+<thead>
+<tr>
+  <th>Tipo</th>
+  <th>Evento</th>
+  <th>Taxa</th>
+</tr>
+</thead>
+<tbody><tr>
+  <td><strong>loc</strong></td>
+  <td><code>commit</code></td>
+  <td>1</td>
+</tr>
+<tr>
+  <td><strong>loc</strong></td>
+  <td><code>pull request</code></td>
+  <td>1</td>
+</tr>
+<tr>
+  <td><strong>loc</strong></td>
+  <td><code>CI fails</code></td>
+  <td>1</td>
+</tr>
+<tr>
+  <td><strong>loc</strong></td>
+  <td><code>CI passes</code></td>
+  <td>1</td>
+</tr>
+<tr>
+  <td><strong>loc</strong></td>
+  <td><code>reject</code></td>
+  <td>1</td>
+</tr>
+<tr>
+  <td><em>SYN</em></td>
+  <td><code>merge</code></td>
+  <td>1</td>
+</tr>
+</tbody></table>
+
+
+<h4 id="main-repository">Main Repository</h4>
+
+<p>Ao realizar o <code>merge</code> (evento sincronizante), o código que está no repositório principal precisa ser testado por um tester (<code>Testing</code>). Após realizar os testes de aceitação, o tester pode rejeitá-las (<code>rollback</code>), fazendo com que o estado do repositório volte ao último de produção estável. O tester também pode aceitar as alterações (<code>success</code>), levando o repositório ao estado de homologação (<code>staging</code>). Após os requisitos de homologação serem todos cumpridos, é realizado o <code>deploy</code> para produção.</p>
+
+<table>
+<thead>
+<tr>
+  <th>Tipo</th>
+  <th>Evento</th>
+  <th>Taxa</th>
+</tr>
+</thead>
+<tbody><tr>
+  <td><strong>loc</strong></td>
+  <td><code>deploy</code></td>
+  <td>1</td>
+</tr>
+<tr>
+  <td><strong>loc</strong></td>
+  <td><code>success</code></td>
+  <td>1</td>
+</tr>
+<tr>
+  <td><strong>loc</strong></td>
+  <td><code>rollback</code></td>
+  <td>1</td>
+</tr>
+<tr>
+  <td><em>SYN</em></td>
+  <td><code>merge</code></td>
+  <td>1</td>
+</tr>
+</tbody></table>
+
+
+
+
+<h3 id="representação-gráfica-dos-autômatos">Representação Gráfica dos Autômatos</h3>
+
+<p><img src="https://www.dropbox.com/s/rf8t2z12392ffnm/drawing.svg?dl=1" alt="enter image description here" title=""></p>
+
+<h3 id="arquivo-de-modelagem-san-com-3-desenvolvedores">Arquivo de Modelagem SAN com 3 Desenvolvedores</h3>
+
+<pre class="prettyprint"><code class=" hljs sql">identifiers
+  TAXA = 1
+
+events
+  loc commit1 (TAXA);
+  loc pull_request1 (TAXA);
+  loc ci_fails1 (TAXA);
+  loc ci_passes1 (TAXA);
+  loc reject1 (TAXA);
+
+  loc commit2 (TAXA);
+  loc pull_request2 (TAXA);
+  loc ci_fails2 (TAXA);
+  loc ci_passes2 (TAXA);
+  loc reject2 (TAXA);
+
+  loc commit3 (TAXA);
+  loc pull_request3 (TAXA);
+  loc ci_fails3 (TAXA);
+  loc ci_passes3 (TAXA);
+  loc reject3 (TAXA);
+
+  loc deploy (TAXA);
+  loc success (TAXA);
+  loc <span class="hljs-operator"><span class="hljs-keyword">rollback</span> (TAXA);</span>
+  syn <span class="hljs-operator"><span class="hljs-keyword">merge</span> (TAXA);</span>
+
+partial reachability = ((st D1 == DEV) &amp;&amp; (st D2 == DEV) &amp;&amp; (st D3 == DEV) &amp;&amp; (st M == PRODUCTION));
+
+network DEVS (continuous)
+  aut D1
+    stt DEV to (DEV) commit1
+    stt DEV to (CI_RUNNING) pull_request1
+    stt CI_RUNNING to (FAILED) ci_fails1
+    stt CI_RUNNING to (READY) ci_passes1
+    stt FAILED to (DEV) <span class="hljs-operator"><span class="hljs-keyword">commit</span>
+    stt READY <span class="hljs-keyword">to</span> (REJECTED) reject1
+    stt REJECTED <span class="hljs-keyword">to</span> (DEV) <span class="hljs-keyword">commit</span>
+    stt READY <span class="hljs-keyword">to</span> (MERGED) <span class="hljs-keyword">merge</span>
+    stt MERGED <span class="hljs-keyword">to</span> (DEV) commit1
+
+  aut D2
+    stt DEV <span class="hljs-keyword">to</span> (DEV) commit2
+    stt DEV <span class="hljs-keyword">to</span> (CI_RUNNING) pull_request2
+    stt CI_RUNNING <span class="hljs-keyword">to</span> (FAILED) ci_fails2
+    stt CI_RUNNING <span class="hljs-keyword">to</span> (READY) ci_passes2
+    stt FAILED <span class="hljs-keyword">to</span> (DEV) <span class="hljs-keyword">commit</span>
+    stt READY <span class="hljs-keyword">to</span> (REJECTED) reject2
+    stt REJECTED <span class="hljs-keyword">to</span> (DEV) <span class="hljs-keyword">commit</span>
+    stt READY <span class="hljs-keyword">to</span> (MERGED) <span class="hljs-keyword">merge</span>
+    stt MERGED <span class="hljs-keyword">to</span> (DEV) commit2
+
+  aut D3
+    stt DEV <span class="hljs-keyword">to</span> (DEV) commit3
+    stt DEV <span class="hljs-keyword">to</span> (CI_RUNNING) pull_request3
+    stt CI_RUNNING <span class="hljs-keyword">to</span> (FAILED) ci_fails3
+    stt CI_RUNNING <span class="hljs-keyword">to</span> (READY) ci_passes3
+    stt FAILED <span class="hljs-keyword">to</span> (DEV) <span class="hljs-keyword">commit</span>
+    stt READY <span class="hljs-keyword">to</span> (REJECTED) reject3
+    stt REJECTED <span class="hljs-keyword">to</span> (DEV) <span class="hljs-keyword">commit</span>
+    stt READY <span class="hljs-keyword">to</span> (MERGED) <span class="hljs-keyword">merge</span>
+    stt MERGED <span class="hljs-keyword">to</span> (DEV) commit3
+
+  aut M
+    stt PRODUCTION <span class="hljs-keyword">to</span> (TESTING) <span class="hljs-keyword">merge</span>
+    stt TESTING <span class="hljs-keyword">to</span> (PRODUCTION) <span class="hljs-keyword">rollback</span>
+    stt TESTING <span class="hljs-keyword">to</span> (STAGING) success
+    stt STAGING <span class="hljs-keyword">to</span> (PRODUCTION) deploy
+
+results
+
+D1_DEV = (st D1 == DEV);</span>
+D1_CI_RUNNING = (st D1 == CI_RUNNING);
+D1_FAILED = (st D1 == FAILED);
+D1_READY = (st D1 == READY);
+D1_REJECTED = (st D1 == REJECTED);
+D1_MERGED = (st D1 == MERGED);
+
+D2_DEV = (st D2 == DEV);
+D2_CI_RUNNING = (st D2 == CI_RUNNING);
+D2_FAILED = (st D2 == FAILED);
+D2_READY = (st D2 == READY);
+D2_REJECTED = (st D2 == REJECTED);
+D2_MERGED = (st D2 == MERGED);
+
+D3_DEV = (st D3 == DEV);
+D3_CI_RUNNING = (st D3 == CI_RUNNING);
+D3_FAILED = (st D3 == FAILED);
+D3_READY = (st D3 == READY);
+D3_REJECTED = (st D3 == REJECTED);
+D3_MERGED = (st D3 == MERGED);
+
+M_PRODUCTION = (st M == PRODUCTION);
+M_TESTING = (st M == TESTING);
+M_STAGING = (st M == STAGING);
+
+DEV_DEV_DEV = ((st D1 == DEV) &amp;&amp; (st D2 == DEV) &amp;&amp; (st D3 == DEV));
+MERGED_MERGED_MERGED = ((st D1 == MERGED) &amp;&amp; (st D2 == MERGED) &amp;&amp; (st D3 == MERGED));</code></pre></div></body>
+</html>
