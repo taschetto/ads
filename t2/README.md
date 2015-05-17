@@ -1,16 +1,20 @@
-# Análise de Desempenho de Sistemas
-## Guilherme Taschetto e William Martins
-### Porto Alegre, 18 de maio de 2015
+Pontifícia Universidade Católica do Rio Grande do Sul
+Faculdade de Informática
+Curso de Ciência da Computação
+Discilina de Análise de Desempenho de Sistemas
 
-# SAN - Stochastic Automata Network
+**Guilherme Taschetto e William Martins**
+Porto Alegre, 18 de maio de 2015
+
+### SAN - Stochastic Automata Network
 
 Um dos grandes desafios do desenvolvimento de software é a gerência do workflow do processo de desenvolvimento. O uso de técnicas como sistemas de versionamento, servidores de integração contínua, equipes ágeis, entre outras, buscam garantir a qualidade do software entregue às partes interessadas.
 
 Porém, com o advento das equipes distribuídas trabalhando em um mesmo projeto, ocorre um aumento da complexidade na gerência e controle do processo. Para validar o processo e estimar o impacto que o mesmo terá no andamento do projeto. é possível representar os componentes através de modelos SAN.
 
-## Modelagem SAN
+### Modelagem SAN
 
-### Developer
+#### Developer
 
 Durante o desenvolvimento (`Dev`) de uma feature, o desenvolvedor realiza diversos `commit`'s. Após, é feito o `pull request`. Esta ação irá disparar a execução de testes automatizados em um servidor de integração contínua (`CI running`). O servidor, por sua vez, poderá retornar falha (`CI fails`), levando aquele código ao estado de falha (`Failed`), obrigando o desenvolvedor à realizar novos `commit`'s corretivos; ou então pode retornar sucesso (`CI passes`), indicando que aquele `pull request` está pronto (`Ready`) para ser mesclado com o código de produção. Neste momento, o desenvolvedor ainda tem o poder de rejeitar (`reject`) o `pull request`, levando ao estado de rejeitado (`Rejected`) e tendo que realizar novos `commit`'s para prosseguir; ou de enviá-lo para produção (`merge`). Quando aquele código já foi mesclado à produção (`Merged`), o desenvolvedor pode realizar novos `commit`'s, o que iniciará um novo ciclo de desenvolvimento (`Dev`).
 
@@ -23,7 +27,7 @@ Durante o desenvolvimento (`Dev`) de uma feature, o desenvolvedor realiza divers
 |**loc** |`reject          `|1   |
 |*SYN*   |`merge           `|1   |
 
-### Main Repository
+#### Main Repository
 
 Ao realizar o `merge` (evento sincronizante), o código que está no repositório principal precisa ser testado por um tester (`Testing`). Após realizar os testes de aceitação, o tester pode rejeitá-las (`rollback`), fazendo com que o estado do repositório volte ao último de produção estável. O tester também pode aceitar as alterações (`success`), levando o repositório ao estado de homologação (`staging`). Após os requisitos de homologação serem todos cumpridos, é realizado o `deploy` para produção.
 
@@ -33,6 +37,10 @@ Ao realizar o `merge` (evento sincronizante), o código que está no repositóri
 |**loc** |`success         `|1   |
 |**loc** |`rollback        `|1   |
 |*SYN*   |`merge           `|1   |
+
+### Representação Gráfica dos Autômatos
+
+![enter image description here](https://www.dropbox.com/s/rf8t2z12392ffnm/drawing.svg?dl=1)
 
 ### Arquivo de Modelagem SAN com 3 Desenvolvedores
 
