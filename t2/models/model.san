@@ -1,24 +1,25 @@
 identifiers
-
   TAXA = 1
 
 events
-
   loc commit1 (TAXA);
   loc pull_request1 (TAXA);
   loc ci_fails1 (TAXA);
   loc ci_passes1 (TAXA);
   loc reject1 (TAXA);
+
   loc commit2 (TAXA);
   loc pull_request2 (TAXA);
   loc ci_fails2 (TAXA);
   loc ci_passes2 (TAXA);
   loc reject2 (TAXA);
+
   loc commit3 (TAXA);
   loc pull_request3 (TAXA);
   loc ci_fails3 (TAXA);
   loc ci_passes3 (TAXA);
   loc reject3 (TAXA);
+
   loc deploy (TAXA);
   loc success (TAXA);
   loc rollback (TAXA);
@@ -27,31 +28,36 @@ events
 partial reachability = ((st D1 == DEV) && (st D2 == DEV) && (st D3 == DEV) && (st M == PRODUCTION));
 
 network DEVS (continuous)
-
   aut D1
     stt DEV to (DEV) commit1
     stt DEV to (CI_RUNNING) pull_request1
-    stt CI_RUNNING to (DEV) ci_fails1
+    stt CI_RUNNING to (FAILED) ci_fails1
     stt CI_RUNNING to (READY) ci_passes1
-    stt READY to (DEV) reject1
+    stt FAILED to (DEV) commit
+    stt READY to (REJECTED) reject1
+    stt REJECTED to (DEV) commit
     stt READY to (MERGED) merge
     stt MERGED to (DEV) commit1
 
   aut D2
     stt DEV to (DEV) commit2
     stt DEV to (CI_RUNNING) pull_request2
-    stt CI_RUNNING to (DEV) ci_fails2
+    stt CI_RUNNING to (FAILED) ci_fails2
     stt CI_RUNNING to (READY) ci_passes2
-    stt READY to (DEV) reject2
+    stt FAILED to (DEV) commit
+    stt READY to (REJECTED) reject2
+    stt REJECTED to (DEV) commit
     stt READY to (MERGED) merge
     stt MERGED to (DEV) commit2
 
   aut D3
     stt DEV to (DEV) commit3
     stt DEV to (CI_RUNNING) pull_request3
-    stt CI_RUNNING to (DEV) ci_fails3
+    stt CI_RUNNING to (FAILED) ci_fails3
     stt CI_RUNNING to (READY) ci_passes3
-    stt READY to (DEV) reject3
+    stt FAILED to (DEV) commit
+    stt READY to (REJECTED) reject3
+    stt REJECTED to (DEV) commit
     stt READY to (MERGED) merge
     stt MERGED to (DEV) commit3
 
@@ -63,12 +69,30 @@ network DEVS (continuous)
 
 results
 
-P1_OFF = (st P1 == OFF); // probabilidade do automato P1 estar no estado OFF
-P1_ON_ = (st P1 == ON);  // probabilidade do automato P1 estar no estado ON
-P2_OFF = (st P2 == OFF); // probabilidade do automato P2 estar no estado OFF
-P2_ON_ = (st P2 == ON);  // probabilidade do automato P2 estar no estado ON
-P3_OFF = (st P3 == OFF); // probabilidade do automato P3 estar no estado OFF
-P3_ON_ = (st P3 == ON);  // probabilidade do automato P3 estar no estado ON
+D1_DEV = (st D1 == DEV);
+D1_CI_RUNNING = (st D1 == CI_RUNNING);
+D1_FAILED = (st D1 == FAILED);
+D1_READY = (st D1 == READY);
+D1_REJECTED = (st D1 == REJECTED);
+D1_MERGED = (st D1 == MERGED);
 
-// probabilidade de todos os automatos estarem no estado OFF
-OFF_OFF_OFF = ((st P1 == OFF) && (st P2 == OFF) && (st P3 == OFF));
+D2_DEV = (st D2 == DEV);
+D2_CI_RUNNING = (st D2 == CI_RUNNING);
+D2_FAILED = (st D2 == FAILED);
+D2_READY = (st D2 == READY);
+D2_REJECTED = (st D2 == REJECTED);
+D2_MERGED = (st D2 == MERGED);
+
+D3_DEV = (st D3 == DEV);
+D3_CI_RUNNING = (st D3 == CI_RUNNING);
+D3_FAILED = (st D3 == FAILED);
+D3_READY = (st D3 == READY);
+D3_REJECTED = (st D3 == REJECTED);
+D3_MERGED = (st D3 == MERGED);
+
+M_PRODUCTION = (st M == PRODUCTION);
+M_TESTING = (st M == TESTING);
+M_STAGING = (st M == STAGING);
+
+DEV_DEV_DEV = ((st D1 == DEV) && (st D2 == DEV) && (st D3 == DEV));
+MERGED_MERGED_MERGED = ((st D1 == MERGED) && (st D2 == MERGED) && (st D3 == MERGED));
