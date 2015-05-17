@@ -1,0 +1,74 @@
+identifiers
+
+  TAXA = 1
+
+events
+
+  loc commit1 (TAXA);
+  loc pull_request1 (TAXA);
+  loc ci_fails1 (TAXA);
+  loc ci_passes1 (TAXA);
+  loc reject1 (TAXA);
+  loc commit2 (TAXA);
+  loc pull_request2 (TAXA);
+  loc ci_fails2 (TAXA);
+  loc ci_passes2 (TAXA);
+  loc reject2 (TAXA);
+  loc commit3 (TAXA);
+  loc pull_request3 (TAXA);
+  loc ci_fails3 (TAXA);
+  loc ci_passes3 (TAXA);
+  loc reject3 (TAXA);
+  loc deploy (TAXA);
+  loc success (TAXA);
+  loc rollback (TAXA);
+  syn merge (TAXA);
+
+partial reachability = ((st D1 == DEV) && (st D2 == DEV) && (st D3 == DEV) && (st M == PRODUCTION));
+
+network DEVS (continuous)
+
+  aut D1
+    stt DEV to (DEV) commit1
+    stt DEV to (CI_RUNNING) pull_request1
+    stt CI_RUNNING to (DEV) ci_fails1
+    stt CI_RUNNING to (READY) ci_passes1
+    stt READY to (DEV) reject1
+    stt READY to (MERGED) merge
+    stt MERGED to (DEV) commit1
+
+  aut D2
+    stt DEV to (DEV) commit2
+    stt DEV to (CI_RUNNING) pull_request2
+    stt CI_RUNNING to (DEV) ci_fails2
+    stt CI_RUNNING to (READY) ci_passes2
+    stt READY to (DEV) reject2
+    stt READY to (MERGED) merge
+    stt MERGED to (DEV) commit2
+
+  aut D3
+    stt DEV to (DEV) commit3
+    stt DEV to (CI_RUNNING) pull_request3
+    stt CI_RUNNING to (DEV) ci_fails3
+    stt CI_RUNNING to (READY) ci_passes3
+    stt READY to (DEV) reject3
+    stt READY to (MERGED) merge
+    stt MERGED to (DEV) commit3
+
+  aut M
+    stt PRODUCTION to (TESTING) merge
+    stt TESTING to (PRODUCTION) rollback
+    stt TESTING to (STAGING) success
+    stt STAGING to (PRODUCTION) deploy
+
+results
+
+P1_OFF = (st P1 == OFF); // probabilidade do automato P1 estar no estado OFF
+P1_ON_ = (st P1 == ON);  // probabilidade do automato P1 estar no estado ON
+P2_OFF = (st P2 == OFF); // probabilidade do automato P2 estar no estado OFF
+P2_ON_ = (st P2 == ON);  // probabilidade do automato P2 estar no estado ON
+P3_OFF = (st P3 == OFF); // probabilidade do automato P3 estar no estado OFF
+P3_ON_ = (st P3 == ON);  // probabilidade do automato P3 estar no estado ON
+
+// probabilidade de todos os automatos estarem no estado OFF
+OFF_OFF_OFF = ((st P1 == OFF) && (st P2 == OFF) && (st P3 == OFF));
