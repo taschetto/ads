@@ -12,3 +12,4 @@
 hs_err_pid*
 
 !filas/simulator.jar
+!t2/bin
