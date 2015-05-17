@@ -38,3 +38,15 @@ Sempre que uma feature entre em estado Beta, são feitos os testes
 de produção, caso esses testes passem, uma nova versão de produção é
 gerada, caso contrário, essa versão é rejeitada, e a versão de produção
 não é promovida.
+
+--------------
+
+# Opção 2
+
+## Developer
+
+Durante o desenvolvimento de um feature (`Dev`), o desenvolvedor realiza diversos `commit`s. Ao finalizar, é feito o `pull request`. Esta ação irá disparar a execução de testes automatizados em um servidor de integração contínua (`CI running`). O servidor, por sua vez, poderá retornar falha (`CI fails`), obrigando o desenvolvedor à realizar novos `commit`s corretivos; ou então pode retornar sucesso (`CI passes`), indicando que aquele `pull request` está pronto (`Ready`) para ser mesclado com o código de produção. Neste momento, o desenvolvedor ainda tem o poder de rejeitar (`reject`) o `pull request` ou de enviá-lo para produção (`merge`). Quando aquele código já foi mesclado à produção (`Merged`), o desenvolvedor pode realizar novos `commit`s, o que iniciará um novo ciclo no estado inicial (`Dev`).
+
+## Main Repository
+
+Ao realizar o `merge` (evento sincronizante), o código que está no repositório principal precisa ser testado por um tester (`Testing`). Após realizar os testes de aceitação, o tester pode rejeitá-las (`rollback`), fazendo com que o estado do repositório volte ao último de produção estável. O tester também pode aceitar as alterações (`success`), levando o repositório ao estado de homologação (`staging`). Após os requisitos de homologação serem todos cumpridos, é realizado o `deploy` para produção.
