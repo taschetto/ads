@@ -1,98 +1,110 @@
 identifiers
-  TAXA = 1
+  TAXA = 1;
 
 events
   loc commit1 (TAXA);
-  loc pull_request1 (TAXA);
-  loc ci_fails1 (TAXA);
-  loc ci_passes1 (TAXA);
   loc reject1 (TAXA);
+  syn ci_fails1 (TAXA);
+  syn ci_passes1 (TAXA);
 
   loc commit2 (TAXA);
-  loc pull_request2 (TAXA);
-  loc ci_fails2 (TAXA);
-  loc ci_passes2 (TAXA);
   loc reject2 (TAXA);
+  syn ci_fails2 (TAXA);
+  syn ci_passes2 (TAXA);
 
   loc commit3 (TAXA);
-  loc pull_request3 (TAXA);
-  loc ci_fails3 (TAXA);
-  loc ci_passes3 (TAXA);
   loc reject3 (TAXA);
+  syn ci_fails3 (TAXA);
+  syn ci_passes3 (TAXA);
+
+  loc commit4 (TAXA);
+  loc reject4 (TAXA);
+  syn ci_fails4 (TAXA);
+  syn ci_passes4 (TAXA);
 
   loc deploy (TAXA);
   loc success (TAXA);
   loc rollback (TAXA);
   syn merge (TAXA);
 
-partial reachability = ((st D1 == DEV) && (st D2 == DEV) && (st D3 == DEV) && (st M == PRODUCTION));
+  syn run_tests (TAXA);
+
+partial reachability = (
+    (st D1 == DEV) &&
+    (st D2 == DEV) &&
+    (st D3 == DEV) &&
+    (st D4 == DEV) &&
+    (st MAIN == PRODUCTION) &&
+    (st CI_SERVER == IDLE)
+);
 
 network DEVS (continuous)
   aut D1
-    stt DEV to (DEV) commit1
-    stt DEV to (CI_RUNNING) pull_request1
+    stt DEV to (CI_RUNNING) run_tests
     stt CI_RUNNING to (FAILED) ci_fails1
-    stt CI_RUNNING to (READY) ci_passes1
-    stt FAILED to (DEV) commit
+                   to (READY) ci_passes1
+    stt FAILED to (DEV) commit1
     stt READY to (REJECTED) reject1
-    stt REJECTED to (DEV) commit
+    stt REJECTED to (DEV) commit1
     stt READY to (MERGED) merge
     stt MERGED to (DEV) commit1
 
   aut D2
-    stt DEV to (DEV) commit2
-    stt DEV to (CI_RUNNING) pull_request2
+    stt DEV to (CI_RUNNING) run_tests
     stt CI_RUNNING to (FAILED) ci_fails2
-    stt CI_RUNNING to (READY) ci_passes2
-    stt FAILED to (DEV) commit
+                   to (READY) ci_passes2
+    stt FAILED to (DEV) commit2
     stt READY to (REJECTED) reject2
-    stt REJECTED to (DEV) commit
+    stt REJECTED to (DEV) commit2
     stt READY to (MERGED) merge
     stt MERGED to (DEV) commit2
 
   aut D3
-    stt DEV to (DEV) commit3
-    stt DEV to (CI_RUNNING) pull_request3
+    stt DEV to (CI_RUNNING) run_tests
     stt CI_RUNNING to (FAILED) ci_fails3
-    stt CI_RUNNING to (READY) ci_passes3
-    stt FAILED to (DEV) commit
+                   to (READY) ci_passes3
+    stt FAILED to (DEV) commit3
     stt READY to (REJECTED) reject3
-    stt REJECTED to (DEV) commit
+    stt REJECTED to (DEV) commit3
     stt READY to (MERGED) merge
     stt MERGED to (DEV) commit3
 
-  aut M
+  aut D4
+    stt DEV to (CI_RUNNING) run_tests
+    stt CI_RUNNING to (FAILED) ci_fails4
+                   to (READY) ci_passes4
+    stt FAILED to (DEV) commit4
+    stt READY to (REJECTED) reject4
+    stt REJECTED to (DEV) commit4
+    stt READY to (MERGED) merge
+    stt MERGED to (DEV) commit4
+
+  aut MAIN
     stt PRODUCTION to (TESTING) merge
     stt TESTING to (PRODUCTION) rollback
-    stt TESTING to (STAGING) success
+                to (STAGING) success
     stt STAGING to (PRODUCTION) deploy
 
+  aut CI_SERVER
+    stt RUNNING to (IDLE) ci_passes1
+                to (IDLE) ci_passes2
+                to (IDLE) ci_passes3
+                to (IDLE) ci_passes4
+                to (IDLE) ci_fails1
+                to (IDLE) ci_fails2
+                to (IDLE) ci_fails3
+                to (IDLE) ci_fails4
+    stt IDLE to (RUNNING) run_tests
+
 results
+  D1_DEV = (st D1 == DEV);
+  D2_DEV = (st D2 == DEV);
+  D3_DEV = (st D3 == DEV);
+  D4_DEV = (st D4 == DEV);
 
-D1_DEV = (st D1 == DEV);
-D1_CI_RUNNING = (st D1 == CI_RUNNING);
-D1_FAILED = (st D1 == FAILED);
-D1_READY = (st D1 == READY);
-D1_REJECTED = (st D1 == REJECTED);
-D1_MERGED = (st D1 == MERGED);
+  MAIN_PRODUCTION = (st MAIN == PRODUCTION);
+  MAIN_TESTING = (st MAIN == TESTING);
+  MAIN_STAGING = (st MAIN == STAGING);
 
-D2_DEV = (st D2 == DEV);
-D2_CI_RUNNING = (st D2 == CI_RUNNING);
-D2_FAILED = (st D2 == FAILED);
-D2_READY = (st D2 == READY);
-D2_REJECTED = (st D2 == REJECTED);
-D2_MERGED = (st D2 == MERGED);
-
-D3_DEV = (st D3 == DEV);
-D3_CI_RUNNING = (st D3 == CI_RUNNING);
-D3_FAILED = (st D3 == FAILED);
-D3_READY = (st D3 == READY);
-D3_REJECTED = (st D3 == REJECTED);
-D3_MERGED = (st D3 == MERGED);
-
-M_PRODUCTION = (st M == PRODUCTION);
-M_TESTING = (st M == TESTING);
-M_STAGING = (st M == STAGING);
-
-DEV_DEV_DEV = ((st D1 == DEV) && (st D2 == DEV) && (st D3 == DEV));
-MERGED_MERGED_MERGED = ((st D1 == MERGED) && (st D2 == MERGED) && (st D3 == MERGED));
+  CI_SERVER_RUNNING = (st CI_SERVER == RUNNING);
+  CI_SERVER_IDLE = (st CI_SERVER == IDLE);
