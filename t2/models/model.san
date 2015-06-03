@@ -45,8 +45,8 @@ network DEVS (continuous)
                    to (READY) ci_passes1
     stt FAILED to (DEV) commit1
     stt READY to (REJECTED) reject1
+              to (MERGED) merge
     stt REJECTED to (DEV) commit1
-    stt READY to (MERGED) merge
     stt MERGED to (DEV) commit1
 
   aut D2
@@ -55,8 +55,8 @@ network DEVS (continuous)
                    to (READY) ci_passes2
     stt FAILED to (DEV) commit2
     stt READY to (REJECTED) reject2
+              to (MERGED) merge
     stt REJECTED to (DEV) commit2
-    stt READY to (MERGED) merge
     stt MERGED to (DEV) commit2
 
   aut D3
@@ -65,8 +65,8 @@ network DEVS (continuous)
                    to (READY) ci_passes3
     stt FAILED to (DEV) commit3
     stt READY to (REJECTED) reject3
+              to (MERGED) merge
     stt REJECTED to (DEV) commit3
-    stt READY to (MERGED) merge
     stt MERGED to (DEV) commit3
 
   aut D4
@@ -75,8 +75,8 @@ network DEVS (continuous)
                    to (READY) ci_passes4
     stt FAILED to (DEV) commit4
     stt READY to (REJECTED) reject4
+              to (MERGED) merge
     stt REJECTED to (DEV) commit4
-    stt READY to (MERGED) merge
     stt MERGED to (DEV) commit4
 
   aut MAIN
@@ -86,14 +86,7 @@ network DEVS (continuous)
     stt STAGING to (PRODUCTION) deploy
 
   aut CI_SERVER
-    stt RUNNING to (IDLE) ci_passes1
-                to (IDLE) ci_passes2
-                to (IDLE) ci_passes3
-                to (IDLE) ci_passes4
-                to (IDLE) ci_fails1
-                to (IDLE) ci_fails2
-                to (IDLE) ci_fails3
-                to (IDLE) ci_fails4
+    stt RUNNING to (IDLE) ci_passes1 ci_passes2 ci_passes3 ci_passes4 ci_fails1 ci_fails2 ci_fails3 ci_fails4
     stt IDLE to (RUNNING) run_tests
 
 results
