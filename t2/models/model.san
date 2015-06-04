@@ -1,33 +1,58 @@
 identifiers
-  TAXA = 1;
+  TAXA_COMMIT1    = 1;
+  TAXA_REJECT1    = 1;
+  TAXA_CI_FAILS1  = 1;
+  TAXA_CI_PASSES1 = 1;
+
+  TAXA_COMMIT2    = 1;
+  TAXA_REJECT2    = 1;
+  TAXA_CI_FAILS2  = 1;
+  TAXA_CI_PASSES2 = 1;
+
+  TAXA_COMMIT3    = 1;
+  TAXA_REJECT3    = 1;
+  TAXA_CI_FAILS3  = 1;
+  TAXA_CI_PASSES3 = 1;
+
+  TAXA_COMMIT4    = 1;
+  TAXA_REJECT4    = 1;
+  TAXA_CI_FAILS4  = 1;
+  TAXA_CI_PASSES4 = 1;
+
+  TAXA_DEPLOY     = 1;
+  TAXA_SUCCESS    = 1;
+  TAXA_ROLLBACK   = 1;
+  TAXA_MERGE      = 1;
+  
+  TAXA_RUN_TESTS  = 1;
 
 events
-  loc commit1 (TAXA);
-  loc reject1 (TAXA);
-  syn ci_fails1 (TAXA);
-  syn ci_passes1 (TAXA);
+  loc commit1    (TAXA_COMMIT1);
+  loc reject1    (TAXA_REJECT1);
+  syn ci_fails1  (TAXA_CI_FAILS1);
+  syn ci_passes1 (TAXA_CI_PASSES1);
 
-  loc commit2 (TAXA);
-  loc reject2 (TAXA);
-  syn ci_fails2 (TAXA);
-  syn ci_passes2 (TAXA);
+  loc commit2    (TAXA_COMMIT2);
+  loc reject2    (TAXA_REJECT2);
+  syn ci_fails2  (TAXA_CI_FAILS2);
+  syn ci_passes2 (TAXA_CI_PASSES2);
 
-  loc commit3 (TAXA);
-  loc reject3 (TAXA);
-  syn ci_fails3 (TAXA);
-  syn ci_passes3 (TAXA);
+  loc commit3    (TAXA_COMMIT3);
+  loc reject3    (TAXA_REJECT3);
+  syn ci_fails3  (TAXA_CI_FAILS3);
+  syn ci_passes3 (TAXA_CI_PASSES3);
 
-  loc commit4 (TAXA);
-  loc reject4 (TAXA);
-  syn ci_fails4 (TAXA);
-  syn ci_passes4 (TAXA);
+  loc commit4    (TAXA_COMMIT4);
+  loc reject4    (TAXA_REJECT4);
+  syn ci_fails4  (TAXA_CI_FAILS4);
+  syn ci_passes4 (TAXA_CI_PASSES4);
 
-  loc deploy (TAXA);
-  loc success (TAXA);
-  loc rollback (TAXA);
-  syn merge (TAXA);
+  loc deploy     (TAXA_DEPLOY);
+  loc success    (TAXA_SUCCESS);
+  loc rollback   (TAXA_ROLLBACK);
+  syn merge      (TAXA_MERGE);
 
-  syn run_tests (TAXA);
+  syn run_tests  (TAXA_RUN_TESTS);
 
 partial reachability = (
     (st D1 == DEV) &&
