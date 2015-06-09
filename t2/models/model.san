@@ -13,10 +13,6 @@ identifiers
   TAXA_CI_FAILS3  = (UN/240/3);
   TAXA_CI_PASSES3 = (UN/360/4);
 
-  TAXA_COMMIT4    = (UN/90);
-  TAXA_CI_FAILS4  = (UN/80/6);
-  TAXA_CI_PASSES4 = (UN/80/4);
-
   TAXA_DEPLOY     = (UN/480/15);
   TAXA_SUCCESS    = (UN/480);
   TAXA_ROLLBACK   = (UN/480/3);
@@ -40,11 +36,6 @@ events
   syn f3 (TAXA_CI_FAILS2);
   syn p3 (TAXA_CI_PASSES2);
 
-  loc c4 (TAXA_COMMIT2);
-  syn r4 (TAXA_RUN_TESTS);
-  syn f4 (TAXA_CI_FAILS2);
-  syn p4 (TAXA_CI_PASSES2);
-
   loc dep (TAXA_DEPLOY);
   loc suc (TAXA_SUCCESS);
   loc rol (TAXA_ROLLBACK);
@@ -53,11 +44,9 @@ events
 partial reachability = (
     (st D1   == DEV)        &&
     (st D2   == DEV)        &&
+    (st D3   == DEV)        &&
     (st MAIN == PRODUCTION) &&
-    (st CI1  == IDLE)       &&
-    (st CI2  == IDLE)       &&
-    (st CI3  == IDLE)       &&
-    (st CI4  == IDLE)
+    (st CI  == IDLE)      
 );
 
 network DEVS (continuous)
@@ -85,29 +74,9 @@ network DEVS (continuous)
     stt READY      to (MERGED)  mer
     stt MERGED     to (DEV)     c3
 
-  aut D4
-    stt DEV        to (RUNNING) r4
-    stt RUNNING    to (FAILED)  f4
-                   to (READY)   p4
-    stt FAILED     to (DEV)     c4
-    stt READY      to (MERGED)  mer
-    stt MERGED     to (DEV)     c4
-
-  aut CI1
-    stt IDLE       to (RUNNING) r1
-    stt RUNNING    to (IDLE)    p1 f1
-
-  aut CI2
-    stt IDLE       to (RUNNING) r2
-    stt RUNNING    to (IDLE)    p2 f2
-
-  aut CI3
-    stt IDLE       to (RUNNING) r3
-    stt RUNNING    to (IDLE)    p3 f3
-
-  aut CI4
-    stt IDLE       to (RUNNING) r4
-    stt RUNNING    to (IDLE)    p4 f4
+  aut CI
+    stt IDLE       to (RUNNING) r1 r2 r3
+    stt RUNNING    to (IDLE)    p1 f1 p2 f2 p3 f3 
 
   aut MAIN
     stt PRODUCTION to (TESTING)    mer
@@ -131,17 +100,9 @@ results
   D3_READY    = (st D3 == READY);
   D3_FAILED   = (st D3 == FAILED);
   D3_MERGED   = (st D3 == MERGED);
-  D4_DEV      = (st D4 == DEV);
-  D4_CI       = (st D4 == RUNNING);
-  D4_READY    = (st D4 == READY);
-  D4_FAILED   = (st D4 == FAILED);
-  D4_MERGED   = (st D4 == MERGED);
 
   MAIN_PRODUCTION = (st MAIN == PRODUCTION);
   MAIN_TESTING    = (st MAIN == TESTING);
   MAIN_STAGING    = (st MAIN == STAGING);
 
-  CI1_RUNNING = (st CI1 != IDLE);
-  CI2_RUNNING = (st CI2 != IDLE);
-  CI3_RUNNING = (st CI3 != IDLE);
-  CI4_RUNNING = (st CI4 != IDLE);
+  CI_RUNNING = (st CI != IDLE);
