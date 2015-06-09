@@ -1,30 +1,32 @@
 identifiers
-  TAXA_COMMIT1    = 1;
-  TAXA_REJECT1    = 1;
-  TAXA_CI_FAILS1  = 1;
-  TAXA_CI_PASSES1 = 1;
+  UN = 480; // minutos de trabalhos por dia
 
-  TAXA_COMMIT2    = 1;
-  TAXA_REJECT2    = 1;
-  TAXA_CI_FAILS2  = 1;
-  TAXA_CI_PASSES2 = 1;
+  TAXA_COMMIT1    = (UN/60);
+  TAXA_REJECT1    = (UN/60/2);
+  TAXA_CI_FAILS1  = 0.001;
+  TAXA_CI_PASSES1 = 0.001;
 
-  TAXA_COMMIT3    = 1;
-  TAXA_REJECT3    = 1;
-  TAXA_CI_FAILS3  = 1;
-  TAXA_CI_PASSES3 = 1;
+  TAXA_COMMIT2    = (UN/240);
+  TAXA_REJECT2    = (UN/60/3);
+  TAXA_CI_FAILS2  = 0.03;
+  TAXA_CI_PASSES2 = 0.01;
 
-  TAXA_COMMIT4    = 1;
-  TAXA_REJECT4    = 1;
-  TAXA_CI_FAILS4  = 1;
-  TAXA_CI_PASSES4 = 1;
+  TAXA_COMMIT3    = (UN/120);
+  TAXA_REJECT3    = (UN/60/4);
+  TAXA_CI_FAILS3  = 0.01;
+  TAXA_CI_PASSES3 = 0.03;
 
-  TAXA_DEPLOY     = 1;
-  TAXA_SUCCESS    = 1;
-  TAXA_ROLLBACK   = 1;
-  TAXA_MERGE      = 1;
+  TAXA_COMMIT4    = (UN/480);
+  TAXA_REJECT4    = (UN/60/5);
+  TAXA_CI_FAILS4  = 0.002;
+  TAXA_CI_PASSES4 = 0.005;
+
+  TAXA_DEPLOY     = 0.15;
+  TAXA_SUCCESS    = 0.3;
+  TAXA_ROLLBACK   = 0.3;
+  TAXA_MERGE      = 10;
   
-  TAXA_RUN_TESTS  = 1;
+  TAXA_RUN_TESTS  = (UN/10);
 
 events
   loc commit1    (TAXA_COMMIT1);
@@ -115,10 +117,12 @@ network DEVS (continuous)
     stt IDLE to (RUNNING) run_tests
 
 results
-  D1_DEV = (st D1 == DEV);
-  D2_DEV = (st D2 == DEV);
-  D3_DEV = (st D3 == DEV);
-  D4_DEV = (st D4 == DEV);
+  D1_DEV      = (st D1 == DEV);
+  D1_CI       = (st D1 == CI_RUNNING);
+  D1_READY    = (st D1 == READY);
+  D1_FAILED   = (st D1 == FAILED);
+  D1_REJECTED = (st D1 == REJECTED);
+  D1_MERGED   = (st D1 == MERGED);
 
   MAIN_PRODUCTION = (st MAIN == PRODUCTION);
   MAIN_TESTING = (st MAIN == TESTING);
