@@ -1,30 +1,20 @@
 identifiers
   UN = 480; // minutos de trabalhos por dia
 
-  TAXA_COMMIT1    = (UN/60);
-  TAXA_REJECT1    = (UN/60/2);
-  TAXA_CI_FAILS1  = 0.001;
-  TAXA_CI_PASSES1 = 0.001;
+  TAXA_COMMIT1    = (UN/60);    // a cada 60 minutos
+  TAXA_REJECT1    = (UN/60/2);  // a cada 120 minutos
+  TAXA_CI_FAILS1  = (UN/480);   // a cada 480 minutos
+  TAXA_CI_PASSES1 = (UN/480/2); // a cada 840 minutos (e por aí vai)
 
   TAXA_COMMIT2    = (UN/240);
-  TAXA_REJECT2    = (UN/60/3);
-  TAXA_CI_FAILS2  = 0.03;
-  TAXA_CI_PASSES2 = 0.01;
+  TAXA_REJECT2    = (UN/240/3);
+  TAXA_CI_FAILS2  = (UN/480/3);
+  TAXA_CI_PASSES2 = (UN/480/4);
 
-  TAXA_COMMIT3    = (UN/120);
-  TAXA_REJECT3    = (UN/60/4);
-  TAXA_CI_FAILS3  = 0.01;
-  TAXA_CI_PASSES3 = 0.03;
-
-  TAXA_COMMIT4    = (UN/480);
-  TAXA_REJECT4    = (UN/60/5);
-  TAXA_CI_FAILS4  = 0.002;
-  TAXA_CI_PASSES4 = 0.005;
-
-  TAXA_DEPLOY     = 0.15;
-  TAXA_SUCCESS    = 0.3;
-  TAXA_ROLLBACK   = 0.3;
-  TAXA_MERGE      = 10;
+  TAXA_DEPLOY     = (UN/480/5);
+  TAXA_SUCCESS    = (UN/480);
+  TAXA_ROLLBACK   = (UN/480/3);
+  TAXA_MERGE      = (UN/30);
   
   TAXA_RUN_TESTS  = (UN/10);
 
@@ -39,16 +29,6 @@ events
   syn ci_fails2  (TAXA_CI_FAILS2);
   syn ci_passes2 (TAXA_CI_PASSES2);
 
-  loc commit3    (TAXA_COMMIT3);
-  loc reject3    (TAXA_REJECT3);
-  syn ci_fails3  (TAXA_CI_FAILS3);
-  syn ci_passes3 (TAXA_CI_PASSES3);
-
-  loc commit4    (TAXA_COMMIT4);
-  loc reject4    (TAXA_REJECT4);
-  syn ci_fails4  (TAXA_CI_FAILS4);
-  syn ci_passes4 (TAXA_CI_PASSES4);
-
   loc deploy     (TAXA_DEPLOY);
   loc success    (TAXA_SUCCESS);
   loc rollback   (TAXA_ROLLBACK);
@@ -59,8 +39,6 @@ events
 partial reachability = (
     (st D1 == DEV) &&
     (st D2 == DEV) &&
-    (st D3 == DEV) &&
-    (st D4 == DEV) &&
     (st MAIN == PRODUCTION) &&
     (st CI_SERVER == IDLE)
 );
@@ -86,26 +64,6 @@ network DEVS (continuous)
     stt REJECTED to (DEV) commit2
     stt MERGED to (DEV) commit2
 
-  aut D3
-    stt DEV to (CI_RUNNING) run_tests
-    stt CI_RUNNING to (FAILED) ci_fails3
-                   to (READY) ci_passes3
-    stt FAILED to (DEV) commit3
-    stt READY to (REJECTED) reject3
-              to (MERGED) merge
-    stt REJECTED to (DEV) commit3
-    stt MERGED to (DEV) commit3
-
-  aut D4
-    stt DEV to (CI_RUNNING) run_tests
-    stt CI_RUNNING to (FAILED) ci_fails4
-                   to (READY) ci_passes4
-    stt FAILED to (DEV) commit4
-    stt READY to (REJECTED) reject4
-              to (MERGED) merge
-    stt REJECTED to (DEV) commit4
-    stt MERGED to (DEV) commit4
-
   aut MAIN
     stt PRODUCTION to (TESTING) merge
     stt TESTING to (PRODUCTION) rollback
@@ -113,7 +71,7 @@ network DEVS (continuous)
     stt STAGING to (PRODUCTION) deploy
 
   aut CI_SERVER
-    stt RUNNING to (IDLE) ci_passes1 ci_passes2 ci_passes3 ci_passes4 ci_fails1 ci_fails2 ci_fails3 ci_fails4
+    stt RUNNING to (IDLE) ci_passes1 ci_passes2 ci_fails1 ci_fails2
     stt IDLE to (RUNNING) run_tests
 
 results
