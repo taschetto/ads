@@ -407,5 +407,131 @@ results
   MAIN_TESTING    = (<span class="hljs-keyword">st</span> MAIN == TESTING)<span class="hljs-comment">;</span>
   MAIN_STAGING    = (<span class="hljs-keyword">st</span> MAIN == STAGING)<span class="hljs-comment">;</span>
 
-  CI_RUNNING = (<span class="hljs-keyword">st</span> CI != IDLE)<span class="hljs-comment">;</span></code></pre></div></body>
+  CI_RUNNING = (<span class="hljs-keyword">st</span> CI != IDLE)<span class="hljs-comment">;</span></code></pre>
+
+
+
+<h2 id="resultados-da-simulação">Resultados da Simulação</h2>
+
+
+
+<pre class="prettyprint"><code class=" hljs vhdl">Starting model compilation...
+First Passage
+ Compiling <span class="hljs-keyword">block</span> <span class="hljs-attribute">'identifiers</span>'...
+ Compiling <span class="hljs-keyword">block</span> <span class="hljs-attribute">'events</span>'...
+ Compiling the reachability <span class="hljs-keyword">function</span>...
+ Compiling <span class="hljs-keyword">block</span> <span class="hljs-attribute">'network</span>'...
+ Compiling <span class="hljs-keyword">block</span> <span class="hljs-attribute">'results</span>'...
+Creating structures <span class="hljs-keyword">for</span> automata <span class="hljs-keyword">and</span> states...
+Second Passage
+ Compiling <span class="hljs-keyword">block</span> <span class="hljs-attribute">'identifiers</span>'...
+ Compiling <span class="hljs-keyword">block</span> <span class="hljs-attribute">'events</span>'...
+ Compiling the reachability <span class="hljs-keyword">function</span>...
+ Writing information about events...
+ Compiling <span class="hljs-keyword">block</span> <span class="hljs-attribute">'network</span>'...
+ Compiling <span class="hljs-keyword">block</span> <span class="hljs-attribute">'results</span>'...
+ Checking integrity <span class="hljs-keyword">of</span> events...
+Model compiled!
+
+Translation performed:  SAN model compilation
+ - user <span class="hljs-typename">time</span> spent:     <span class="hljs-number">0.0000000000000000e+00</span> seconds
+ - system <span class="hljs-typename">time</span> spent:   <span class="hljs-number">3.4260000000000002e-03</span> seconds
+ - real <span class="hljs-typename">time</span> spent:     <span class="hljs-number">3.4329891204833984e-03</span> seconds
+
+Creating temporary directories...
+Creating description files...
+ :-) <span class="hljs-keyword">file</span> <span class="hljs-attribute">'des</span>/model.des' saved
+ :-) <span class="hljs-keyword">file</span> <span class="hljs-attribute">'des</span>/model.dic' saved
+ :-) <span class="hljs-keyword">file</span> <span class="hljs-attribute">'des</span>/model.fct' saved
+ :-) <span class="hljs-keyword">file</span> <span class="hljs-attribute">'des</span>/model.tft' saved
+ :-) <span class="hljs-keyword">file</span> <span class="hljs-attribute">'des</span>/model.res' saved
+
+Loading SAN model (Internal Descriptor Generation)
+Compile Network
+Compile <span class="hljs-keyword">Function</span> Table
+ :-) <span class="hljs-keyword">file</span> <span class="hljs-attribute">'des</span>/model.tft' read
+ :-) <span class="hljs-keyword">file</span> <span class="hljs-attribute">'dsc</span>/model.ftb' saved
+Compile Descriptor
+ :-) <span class="hljs-keyword">file</span> <span class="hljs-attribute">'des</span>/model.des' read
+ :-) <span class="hljs-keyword">file</span> <span class="hljs-attribute">'dsc</span>/model.dsc' saved
+Compile Dictionary
+ :-) <span class="hljs-keyword">file</span> <span class="hljs-attribute">'dsc</span>/model.dct' saved
+ :-) <span class="hljs-keyword">file</span> <span class="hljs-attribute">'des</span>/model.dic' read
+Compile Integration Functions
+ :-) <span class="hljs-keyword">file</span> <span class="hljs-attribute">'des</span>/model.res' read
+ :-) <span class="hljs-keyword">file</span> <span class="hljs-attribute">'dsc</span>/model.inf' saved
+
+Translation performed:  loading SAN model
+ - user <span class="hljs-typename">time</span> spent:     <span class="hljs-number">6.5919999999999998e-03</span> seconds
+ - system <span class="hljs-typename">time</span> spent:   <span class="hljs-number">0.0000000000000000e+00</span> seconds
+ - real <span class="hljs-typename">time</span> spent:     <span class="hljs-number">4.6951770782470703e-03</span> seconds
+
+Reading automata<span class="hljs-attribute">'s</span> domains...
+
+Computing an initial state...
+
+Initial state: (<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>)
+
+Translation performed:  initial state computation
+ - user <span class="hljs-typename">time</span> spent:     <span class="hljs-number">0.0000000000000000e+00</span> seconds
+ - system <span class="hljs-typename">time</span> spent:   <span class="hljs-number">0.0000000000000000e+00</span> seconds
+ - real <span class="hljs-typename">time</span> spent:     <span class="hljs-number">2.7179718017578125e-05</span> seconds
+
+ :-) <span class="hljs-keyword">file</span> <span class="hljs-attribute">'des</span>/model.fct' read
+
+Generating the Reachability Descriptor...
+
+Translation performed:  reachability descriptor generation
+ - user <span class="hljs-typename">time</span> spent:     <span class="hljs-number">0.0000000000000000e+00</span> seconds
+ - system <span class="hljs-typename">time</span> spent:   <span class="hljs-number">0.0000000000000000e+00</span> seconds
+ - real <span class="hljs-typename">time</span> spent:     <span class="hljs-number">1.9788742065429688e-04</span> seconds
+
+Computing the reachable state space...
+
+Translation performed:  reachable state space generation
+ - user <span class="hljs-typename">time</span> spent:     <span class="hljs-number">0.0000000000000000e+00</span> seconds
+ - system <span class="hljs-typename">time</span> spent:   <span class="hljs-number">0.0000000000000000e+00</span> seconds
+ - real <span class="hljs-typename">time</span> spent:     <span class="hljs-number">7.8797340393066406e-04</span> seconds
+
+Memory used: 
+MDD structure = <span class="hljs-number">23788</span> bytes
+Reachability Descriptor = <span class="hljs-number">6414</span> bytes
+
+State spaces:
+PSS = <span class="hljs-number">750</span>
+RSS = <span class="hljs-number">336</span>
+
+Generating the underlying Markov chain...
+
+Integration <span class="hljs-keyword">of</span> <span class="hljs-keyword">function</span> D1_DEV = <span class="hljs-number">2.5669983578322819e-01</span>
+Integration <span class="hljs-keyword">of</span> <span class="hljs-keyword">function</span> D1_CI = <span class="hljs-number">1.1135810503029921e-01</span>
+Integration <span class="hljs-keyword">of</span> <span class="hljs-keyword">function</span> D1_READY = <span class="hljs-number">6.1106241462900723e-01</span>
+Integration <span class="hljs-keyword">of</span> <span class="hljs-keyword">function</span> D1_FAILED = <span class="hljs-number">1.3919763134728981e-02</span>
+Integration <span class="hljs-keyword">of</span> <span class="hljs-keyword">function</span> D1_MERGED = <span class="hljs-number">6.9598814226769813e-03</span>
+Integration <span class="hljs-keyword">of</span> <span class="hljs-keyword">function</span> D2_DEV = <span class="hljs-number">2.3939030580321383e-01</span>
+Integration <span class="hljs-keyword">of</span> <span class="hljs-keyword">function</span> D2_CI = <span class="hljs-number">2.2271621355389903e-01</span>
+Integration <span class="hljs-keyword">of</span> <span class="hljs-keyword">function</span> D2_READY = <span class="hljs-number">4.7293458591541621e-01</span>
+Integration <span class="hljs-keyword">of</span> <span class="hljs-keyword">function</span> D2_FAILED = <span class="hljs-number">3.7119369021767476e-02</span>
+Integration <span class="hljs-keyword">of</span> <span class="hljs-keyword">function</span> D2_MERGED = <span class="hljs-number">2.7839525705643998e-02</span>
+Integration <span class="hljs-keyword">of</span> <span class="hljs-keyword">function</span> D3_DEV = <span class="hljs-number">9.6464836384554789e-02</span>
+Integration <span class="hljs-keyword">of</span> <span class="hljs-keyword">function</span> D3_CI = <span class="hljs-number">2.2271621030544031e-01</span>
+Integration <span class="hljs-keyword">of</span> <span class="hljs-keyword">function</span> D3_READY = <span class="hljs-number">6.1586005915209174e-01</span>
+Integration <span class="hljs-keyword">of</span> <span class="hljs-keyword">function</span> D3_FAILED = <span class="hljs-number">3.7119368452209818e-02</span>
+Integration <span class="hljs-keyword">of</span> <span class="hljs-keyword">function</span> D3_MERGED = <span class="hljs-number">2.7839525705643995e-02</span>
+Integration <span class="hljs-keyword">of</span> <span class="hljs-keyword">function</span> MAIN_PRODUCTION = <span class="hljs-number">3.3185141105286292e-01</span>
+Integration <span class="hljs-keyword">of</span> <span class="hljs-keyword">function</span> MAIN_TESTING = <span class="hljs-number">4.1759288574398652e-02</span>
+Integration <span class="hljs-keyword">of</span> <span class="hljs-keyword">function</span> MAIN_STAGING = <span class="hljs-number">6.2638930037267870e-01</span>
+Integration <span class="hljs-keyword">of</span> <span class="hljs-keyword">function</span> CI_RUNNING = <span class="hljs-number">5.5679052888963831e-01</span>
+
+Translation performed:  results <span class="hljs-keyword">of</span> the integration functions
+ - user <span class="hljs-typename">time</span> spent:     <span class="hljs-number">8.6000000000000312e-04</span> seconds
+ - system <span class="hljs-typename">time</span> spent:   <span class="hljs-number">6.1399999999999996e-04</span> seconds
+ - real <span class="hljs-typename">time</span> spent:     <span class="hljs-number">1.4719963073730469e-03</span> seconds
+
+Deleting temporary directories
+
+Translation performed:  total elapsed <span class="hljs-typename">time</span>
+ - user <span class="hljs-typename">time</span> spent:     <span class="hljs-number">3.1999000000000000e-02</span> seconds
+ - system <span class="hljs-typename">time</span> spent:   <span class="hljs-number">2.0652000000000000e-02</span> seconds
+ - real <span class="hljs-typename">time</span> spent:     <span class="hljs-number">6.7047834396362305e-02</span> seconds</code></pre></div></body>
 </html>

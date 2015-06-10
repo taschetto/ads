@@ -198,3 +198,127 @@ results
 
   CI_RUNNING = (st CI != IDLE);
 ```
+
+## Resultados da Simulação
+
+```
+Starting model compilation...
+First Passage
+ Compiling block 'identifiers'...
+ Compiling block 'events'...
+ Compiling the reachability function...
+ Compiling block 'network'...
+ Compiling block 'results'...
+Creating structures for automata and states...
+Second Passage
+ Compiling block 'identifiers'...
+ Compiling block 'events'...
+ Compiling the reachability function...
+ Writing information about events...
+ Compiling block 'network'...
+ Compiling block 'results'...
+ Checking integrity of events...
+Model compiled!
+
+Translation performed:  SAN model compilation
+ - user time spent:     0.0000000000000000e+00 seconds
+ - system time spent:   3.4260000000000002e-03 seconds
+ - real time spent:     3.4329891204833984e-03 seconds
+
+Creating temporary directories...
+Creating description files...
+ :-) file 'des/model.des' saved
+ :-) file 'des/model.dic' saved
+ :-) file 'des/model.fct' saved
+ :-) file 'des/model.tft' saved
+ :-) file 'des/model.res' saved
+
+Loading SAN model (Internal Descriptor Generation)
+Compile Network
+Compile Function Table
+ :-) file 'des/model.tft' read
+ :-) file 'dsc/model.ftb' saved
+Compile Descriptor
+ :-) file 'des/model.des' read
+ :-) file 'dsc/model.dsc' saved
+Compile Dictionary
+ :-) file 'dsc/model.dct' saved
+ :-) file 'des/model.dic' read
+Compile Integration Functions
+ :-) file 'des/model.res' read
+ :-) file 'dsc/model.inf' saved
+
+Translation performed:  loading SAN model
+ - user time spent:     6.5919999999999998e-03 seconds
+ - system time spent:   0.0000000000000000e+00 seconds
+ - real time spent:     4.6951770782470703e-03 seconds
+
+Reading automata's domains...
+
+Computing an initial state...
+
+Initial state: (0, 0, 0, 0, 0)
+
+Translation performed:  initial state computation
+ - user time spent:     0.0000000000000000e+00 seconds
+ - system time spent:   0.0000000000000000e+00 seconds
+ - real time spent:     2.7179718017578125e-05 seconds
+
+ :-) file 'des/model.fct' read
+
+Generating the Reachability Descriptor...
+
+Translation performed:  reachability descriptor generation
+ - user time spent:     0.0000000000000000e+00 seconds
+ - system time spent:   0.0000000000000000e+00 seconds
+ - real time spent:     1.9788742065429688e-04 seconds
+
+Computing the reachable state space...
+
+Translation performed:  reachable state space generation
+ - user time spent:     0.0000000000000000e+00 seconds
+ - system time spent:   0.0000000000000000e+00 seconds
+ - real time spent:     7.8797340393066406e-04 seconds
+
+Memory used: 
+MDD structure = 23788 bytes
+Reachability Descriptor = 6414 bytes
+
+State spaces:
+PSS = 750
+RSS = 336
+
+Generating the underlying Markov chain...
+
+Integration of function D1_DEV = 2.5669983578322819e-01
+Integration of function D1_CI = 1.1135810503029921e-01
+Integration of function D1_READY = 6.1106241462900723e-01
+Integration of function D1_FAILED = 1.3919763134728981e-02
+Integration of function D1_MERGED = 6.9598814226769813e-03
+Integration of function D2_DEV = 2.3939030580321383e-01
+Integration of function D2_CI = 2.2271621355389903e-01
+Integration of function D2_READY = 4.7293458591541621e-01
+Integration of function D2_FAILED = 3.7119369021767476e-02
+Integration of function D2_MERGED = 2.7839525705643998e-02
+Integration of function D3_DEV = 9.6464836384554789e-02
+Integration of function D3_CI = 2.2271621030544031e-01
+Integration of function D3_READY = 6.1586005915209174e-01
+Integration of function D3_FAILED = 3.7119368452209818e-02
+Integration of function D3_MERGED = 2.7839525705643995e-02
+Integration of function MAIN_PRODUCTION = 3.3185141105286292e-01
+Integration of function MAIN_TESTING = 4.1759288574398652e-02
+Integration of function MAIN_STAGING = 6.2638930037267870e-01
+Integration of function CI_RUNNING = 5.5679052888963831e-01
+
+Translation performed:  results of the integration functions
+ - user time spent:     8.6000000000000312e-04 seconds
+ - system time spent:   6.1399999999999996e-04 seconds
+ - real time spent:     1.4719963073730469e-03 seconds
+
+Deleting temporary directories
+
+Translation performed:  total elapsed time
+ - user time spent:     3.1999000000000000e-02 seconds
+ - system time spent:   2.0652000000000000e-02 seconds
+ - real time spent:     6.7047834396362305e-02 seconds
+```
