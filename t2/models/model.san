@@ -3,36 +3,37 @@ identifiers
 
   TAXA_COMMIT1    = (UN/60);    // a cada 60 minutos
   TAXA_CI_FAILS1  = (UN/480);   // a cada 480 minutos
-  TAXA_CI_PASSES1 = (UN/480/2); // a cada 840 minutos (e por aí vai)
+  TAXA_CI_PASSES1 = (UN/480/2); // a cada 840 minutos
+  TAXA_RUN_TESTS1 = (UN/120);   // a cada 120 minutos (e por aí vai)
 
   TAXA_COMMIT2    = (UN/240);
   TAXA_CI_FAILS2  = (UN/480/3);
   TAXA_CI_PASSES2 = (UN/480/4);
+  TAXA_RUN_TESTS2 = (UN/180);
 
   TAXA_COMMIT3    = (UN/120);
   TAXA_CI_FAILS3  = (UN/240/3);
   TAXA_CI_PASSES3 = (UN/360/4);
+  TAXA_RUN_TESTS3 = (UN/30);
 
   TAXA_DEPLOY     = (UN/480/15);
   TAXA_SUCCESS    = (UN/480);
   TAXA_ROLLBACK   = (UN/480/3);
   TAXA_MERGE      = (UN/30);
-  
-  TAXA_RUN_TESTS  = (UN/1);
 
 events
   loc c1 (TAXA_COMMIT1);
-  syn r1 (TAXA_RUN_TESTS);
+  syn r1 (TAXA_RUN_TESTS1);
   syn f1 (TAXA_CI_FAILS1);
   syn p1 (TAXA_CI_PASSES1);
 
   loc c2 (TAXA_COMMIT2);
-  syn r2 (TAXA_RUN_TESTS);
+  syn r2 (TAXA_RUN_TESTS2);
   syn f2 (TAXA_CI_FAILS2);
   syn p2 (TAXA_CI_PASSES2);
 
   loc c3 (TAXA_COMMIT2);
-  syn r3 (TAXA_RUN_TESTS);
+  syn r3 (TAXA_RUN_TESTS3);
   syn f3 (TAXA_CI_FAILS2);
   syn p3 (TAXA_CI_PASSES2);
 
