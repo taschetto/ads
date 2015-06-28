@@ -137,7 +137,7 @@ partial reachability = (
     (st D2   == DEV)        &&
     (st D3   == DEV)        &&
     (st MAIN == PRODUCTION) &&
-    (st CI  == IDLE)      
+    (st CI  == IDLE)
 );
 
 network DEVS (continuous)
@@ -167,7 +167,7 @@ network DEVS (continuous)
 
   aut CI
     stt IDLE       to (RUNNING) r1 r2 r3
-    stt RUNNING    to (IDLE)    p1 f1 p2 f2 p3 f3 
+    stt RUNNING    to (IDLE)    p1 f1 p2 f2 p3 f3
 
   aut MAIN
     stt PRODUCTION to (TESTING)    mer
@@ -280,7 +280,7 @@ Translation performed:  reachable state space generation
  - system time spent:   0.0000000000000000e+00 seconds
  - real time spent:     7.8797340393066406e-04 seconds
 
-Memory used: 
+Memory used:
 MDD structure = 23788 bytes
 Reachability Descriptor = 6414 bytes
 
@@ -322,3 +322,28 @@ Translation performed:  total elapsed time
  - system time spent:   2.0652000000000000e-02 seconds
  - real time spent:     6.7047834396362305e-02 seconds
 ```
+
+## Análise dos Resultados
+
+Através das simulações, podemos perceber que os desenvolvedores ficam boa parte
+do tempo esperando que os outros desenvolvedores estejam no estado de "pronto"
+para realização de merge. Podemos ver que o desenvolvedor 1 ficou 61% do tempo
+aguardando os outros desenvolvedores entrarem no estado "READY", da mesma forma,
+os desenvolvedores 2 e 3 ficaram, respectivamente, 47% e 65% do tempo esperando
+os outros desenvolvedores.
+
+Este é um cenário simples, com apenas 3 desenvolvedores, porém, quanto mais
+desenvolvedores tivermos no processo, mais tem os outros desenvolvedores
+passariam esperando os outros, além disso, cada um dos desenvolvedores possui
+seu próprio tempo de commit, o que pode dificultar com que a sincronia seja
+feita.
+
+### Proposta de Melhorias
+
+Podemos ver que vamos ter problemas quando tivermos mais desenvolvedores,
+dessa forma, uma forma possível de se garantir que tenhamos mais merges
+(estado "MERGE"), é fazer com que os merges não dependam que todos os
+desenvolvedores estejam prontos, bastando que só um dos desenvolvedores esteja.
+Isso resolveria o problema de termos poucos merges, porém,
+seria necessário adicionar mais alguns estados para poder ter mais controles
+nos outros SAN's.
